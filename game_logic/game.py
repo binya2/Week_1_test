@@ -12,3 +12,5 @@ def init_game()->dict:
     player1["hand"] = new_shuffl_deck[:26]
     player2["hand"] = new_shuffl_deck[26:]
 
+    return {"deck": new_shuffl_deck, "player_1": player1, "player_2": player2}
+
