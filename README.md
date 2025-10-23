@@ -1,4 +1,3 @@
-# Week_1_test
-שם: בנימין שוראקי
-ת.ז.: 209700798
-כיתה: נגב
+# Benyamin_Shouraki Negev 209700798
+
+Week_1_test
