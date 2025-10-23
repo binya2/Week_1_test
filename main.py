@@ -10,10 +10,10 @@ def run():
     winner = {}
     if len(player_1["won_pile"]) > len(player_2["won_pile"]):
         winner = player_1
-        # print(f"{player_1["name"]} wins! With {player_1["won_pile"]} cards")
+
     if len(player_1["won_pile"]) < len(player_2["won_pile"]):
-        winner = player_1
-        # print(f"{player_2["name"]} wins! With {player_1["won_pile"]} cards")
+        winner = player_2
+
     if winner != {}:
         print(f"{winner["name"]} wins! With {len(winner["won_pile"])} cards")
     else:
