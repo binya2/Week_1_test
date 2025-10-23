@@ -27,14 +27,12 @@ def create_deck() -> list[dict]:
 
 def shuffle(deck:list[dict]) -> list[dict]:
     shuffle_list = deck.copy()
-    print(len(shuffle_list))
     for i in range(1000):
         num1 = random.randrange(1, 52)
         num2 = random.randrange(1, 52)
         if num1 == num2:
             i -= 1
             continue
-        print(num1, num2)
 
         temp_dict1 = shuffle_list[num1]
         shuffle_list.remove(temp_dict1)
@@ -43,7 +41,6 @@ def shuffle(deck:list[dict]) -> list[dict]:
         temp_dict2 = shuffle_list[num2 - 1]
         shuffle_list.remove(temp_dict2)
         shuffle_list.insert(num1, temp_dict2)
-        print(i)
 
 
     return shuffle_list
