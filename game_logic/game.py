@@ -16,10 +16,10 @@ def init_game()->dict:
 
 
 def play_round(p1:dict,p2:dict):
-    p1_card = p1["hand"]
-    p2_card = p2["hand"]
+    p1_card = p1["hand"].pop(0)
+    p2_card = p2["hand"].pop(0)
     winer = compare_cards(p1_card, p2_card)
-    print(f"{p1["name"]} card: {p1_card['value"']}\n{p2["name"]} card: {p2_card['value"']}")
+    print(f"{p1["name"]} card: {p1_card['value']} vs {p2["name"]} card: {p2_card['value']}", end= "=\t" )
 
     match winer:
         case 'p1':
@@ -30,9 +30,9 @@ def play_round(p1:dict,p2:dict):
             print(f"{p2["name"]} wins!")
             p2["won_pile"].append(p1_card)
             p2["won_pile"].append(p2_card)
-            p2["won_pile"].append(p1_card)
         case 'WAR':
-            print(f"WAR: {p1_card['value']} vs {p2_card['value']}")
-            pass
+            print(f"WAR:{p1_card['value']} vs {p2_card['value']}")
+            p1["won_pile"].append(p1_card)
+            p2["won_pile"].append(p2_card)
         case _:
-            pass
+            print("error")
