@@ -19,7 +19,7 @@ def play_round(p1: dict, p2: dict):
     p2_card = p2["hand"].pop(0)
     winner = compare_cards(p1_card, p2_card)
 
-    print(f'{p1["name"]} card:{p1_card["value"]} vs {p2["name"]} card:{p2_card["value"]}', end=" =\t")
+    print(f'{p1["name"]} card:{p1_card["value"]} vs {p2["name"]} card:{p2_card["value"]}', end=" = \t")
 
     match winner:
         case 'p1':
@@ -33,13 +33,17 @@ def play_round(p1: dict, p2: dict):
             p2["won_pile"].append(p2_card)
             print(f'{p2["name"]} has {len(p2["won_pile"])} victory cards')
         case 'WAR':
-            print(f"WAR:{p1_card['value']} vs {p2_card['value']}")
+            print(f"WAR: {p1_card['value']} vs {p2_card['value']}: ", end=" ")
+            p1["hand"].insert(0, p1_card)
+            p2["hand"].insert(0, p2_card)
             war(p1, p2)
+
+
         case _:
             print("error")
 
 
-def war(p1: dict, p2: dict):
+def war(p1: dict, p2: dict) -> str|None:
     p1_cards = []
     p2_cards = []
     while len(p1["hand"]) >= 4 and len(p2["hand"]) >= 4:
@@ -47,24 +51,24 @@ def war(p1: dict, p2: dict):
         p2_cards += [p2["hand"].pop(0) for _ in range(4)]
 
         print(
-            f"{p1['name']}'s fourth card:{p1_cards[-1]['value']} vs {p2['name']}'s fourth card:{p2_cards[-1]["value"]}",
+            f"{p1['name']}'s card:{p1_cards[-1]['value']} vs {p2['name']}'s card:{p2_cards[-1]["value"]}",
             end=" = ")
-
         winner = compare_cards(p1_cards[-1], p2_cards[-1])
-
         match winner:
             case 'p1':
-                print(f"{p1["name"]} wins!")
-                p1["won_pile"] += p1_cards
+                print(f"{p1["name"]} wins!", end=" ")
+                p1["won_pile"] += p1_cards[:]
                 p1["won_pile"] += p2_cards[:]
-                break
+                print(f'{p1["name"]} has {len(p1["won_pile"])} victory cards')
+                return winner
             case 'p2':
-                print(f"{p2["name"]} wins!")
-                p2["won_pile"] += p1_cards
-                p2["won_pile"] += p2_cards
-                break
+                print(f"{p2["name"]} wins!", end=" ")
+                p2["won_pile"] += p1_cards[:]
+                p2["won_pile"] += p2_cards[:]
+                print(f'{p2["name"]} has {len(p2["won_pile"])} victory cards')
+                return winner
             case 'WAR':
                 print(f"WAR:{p1_cards[-1]} vs {p2_cards[-1]}")
             case _:
                 print("error")
-                break
+                return None
