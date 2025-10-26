@@ -15,13 +15,10 @@ def run():
         winner = player_2
 
     if winner != {}:
-        print(f"{winner["name"]} wins! With {len(winner["won_pile"])} cards")
+        print(f"{winner['name']} wins! With {len(winner['won_pile'])} cards")
     else:
         print("Draw - Both win")
 
 
 if __name__ == "__main__":
     run()
-
-
-
